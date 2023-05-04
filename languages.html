@@ -10,7 +10,102 @@
   <link rel="stylesheet" href="mystyle.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:normal,bold" type="text/css">
 
-
+<style>
+  body {
+  background-color: rgb(249, 249, 249);
+  position: relative;
+}
+.navcolors {
+  background-color: rgb(255, 255, 255);
+}
+.navpicture {
+  margin-left: -0.9EM;
+  height: 105px;
+  width: auto;
+  }
+.header {
+  margin: 2px -2px 10px -2px;
+  font-size: 145%;
+  font-family: Raleway;
+  font-weight: bold;
+  color: rgb(100, 100, 100);
+}
+.header1 {
+  margin: 2px -2px 10px -2px;
+  font-family: Raleway;
+  font-size: 120%;
+  color: rgb(100, 100, 100);
+}
+.header2 {
+  margin: 5px -2px 10px -2px;
+  font-family: Raleway;
+  font-weight: bold;
+  font-size: 160%;
+  color: rgb(100, 100, 100);
+}
+.wit {
+  margin: 2px -8px 2px -8px;
+  font-family: Raleway;
+  color: rgb(119, 119, 119);
+  text-align: justify;
+}
+.indent {
+  margin-left: 20px;
+}
+.anchor {
+  display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    top: -110px;
+    left: 0;
+    visibility: hidden;
+}
+.anchor1 {
+  display:block;
+    position: absolute;
+    visibility: hidden;
+    
+}
+a {
+  color: #000;
+  font-size: 100%;
+}
+.sd7 {
+  font-size: 70%;
+}
+.container1 {
+  margin: 40px 15px 0px 20px;
+}
+.container3 {
+  margin: 40px 15px 0px 20px;
+  margin-bottom: -100px;
+}
+.container2 {
+  padding-right: 60px;
+  padding-left: 60px;
+}
+.padding {
+  padding: 5px 5px 5px 5px;
+}
+.padding1 {
+  margin: 30px 40px 30px 40px;
+}
+.marge {
+  margin-right: 7px;
+}
+.hover:hover {
+  color: #000;
+}
+.scrollable {
+  background-light;
+  position: absolute;
+  overflow: scroll;
+  padding-bottom: 00px;
+  padding-right: 140px;
+}
+</style>
 <title>HOME | Jonne Zomerdijk</title>
   <link rel="canonical" href="index.html"/>
   <meta property="og:title" content="HOME | Jonne Zomerdijk"/>
@@ -23,7 +118,7 @@
 
 <body data-spy="scroll" data-target="#navigation" data-offset="70">
 
-    
+  
 <!-- navbar start -->
   <div class="container-fluid sticky-top">
 
@@ -33,7 +128,7 @@
       <nav id="#navigation" class="navbar wit navcolors sticky-top navbar-expand-sm">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="index.html">
               <p class="font-weight-bold wit hover"><img class="mr-1 mb-1" src="https://res.cloudinary.com/jonne/image/upload/v1681646486/png-home.png" alt="home" width="12px" height="auto"></img>Home</p>
             </a>
           </li>
@@ -81,22 +176,21 @@
   </div>
 <!-- navbar end -->
 
-<!-- start text block Intro-->
-  <div class="container1">
-    <div class="row">
-      <div class="col-sm-6">
-        <h1 class="header2">Jonne Zomerdijk
-        </h1>
-        <div class="indent"><p class="main_text"> Welcome to my personal page. On this page I will introduce myself and tell you about my interests. After</div><div class="main_text"> that I will display a collection of my work (under <a class="btn-link" href="portfolio.html">portfolio</a>).</div>
-          <div class="main_text">I am a young student interested in the field of Software Development. In 2016 I completed a bachelor Psychology at the Vrije Universiteit Amsterdam. The title of the thesis I wrote for this study was "Storing Temporal Order in Visual Working Memory", and it was based on an experiment I designed in OpenSesame, an open-source programming platform which uses Python."<br> In October I started as a MasterClass Professional at Calco to learn about the principles of the applications of IT, and to learn to code. In my free time I am learning every type of programming through i.a. freeCodeCamp, edX and SoloLearn.<br><br>Hereby a <a class="btn-link" href="https://drive.google.com/open?id=1OjsGX3w6y9mp0H7TqTNisWiqrAIPDYui" target="_blank">link</a> to my CV.</div>
-        </p>
-      </div>
-      <div class="col-sm-6">
-        <img class="ml-auto rounded img-fluid" src="http://res.cloudinary.com/jonne/image/upload/v1519083282/Trollhappiness.jpg" alt="Photobomb"></img>
-      </div>
+<!-- start text block Languages -->
+<div class="container1">
+  <div class="row">
+    <div class="col-sm-6">
+      <span id="Languages" class="anchor"></span>
+      <img class="ml-auto rounded img-fluid" src="http://res.cloudinary.com/jonne/image/upload/v1519130561/MUKC6488.jpg" alt="Amigos"></img>
+    </div>
+    <div class="col-sm-6">
+      <h1 class="header">Languages</h1>
+      <p> <div class="main_text indent"> From February to July 2015 I went on an Erasmus exchange in Budapest, Hungary. At the time, I started</div><div class="wit"> to develop an in interest in the Spanish language. Starting with a simple course in a mobile application called Duolingo, my interest started to dwell and before I knew it I was looking up every word that came into my mind. I decided to take a university course in Spanish but I could only start with the basics. So, in this period I finished Spanish 1 and 2 with a 9 and a 7 respectively and also went to Madrid for a week to visit some friends. From that moment on I started to watch many Spanish-language films. Also, starting to raise money to travel to South America, I worked in several touristic companies for about a year in total. My Spanish level has peaked since my travel to South America of which you can read more in the Travel-sector of this page.</div>
+      </p>
     </div>
   </div>
-  <!-- end text block Intro -->
+</div>
+<!-- end text block Languages -->
 
 
 

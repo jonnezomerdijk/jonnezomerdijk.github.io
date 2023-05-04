@@ -1,0 +1,103 @@
+body {
+    background-color: rgb(249, 249, 249);
+    position: relative;
+  }
+  .navcolors {
+    background-color: rgb(255, 255, 255);
+  }
+  .navpicture {
+    margin-left: -0.9EM;
+    height: 105px;
+    width: auto;
+    }
+  .header {
+    margin: 2px -2px 10px -2px;
+    font-size: 145%;
+    font-family: Raleway;
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+  }
+  .header1 {
+    margin: 2px -2px 10px -2px;
+    font-family: Raleway;
+    font-size: 120%;
+    color: rgb(100, 100, 100);
+  }
+  .header2 {
+    margin: 5px -2px 10px -2px;
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 160%;
+    color: rgb(100, 100, 100);
+  }
+  .main_text {
+    margin: 2px -8px 2px -8px;
+    font-family: Raleway;
+    color: rgb(119, 119, 119);
+    text-align: left;
+  }
+  .wit {
+    margin: 2px -8px 2px -8px;
+    font-family: Raleway;
+    color: rgb(119, 119, 119);
+    text-align: center;
+  }
+  .indent {
+    margin-left: 20px;
+  }
+  .anchor {
+    display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      z-index: -1;
+      top: -110px;
+      left: 0;
+      visibility: hidden;
+  }
+  .anchor1 {
+    display:block;
+      position: absolute;
+      visibility: hidden;
+      
+  }
+  .mt-5 {
+    text-align: center;
+  }
+  a {
+    color: #000;
+    font-size: 100%;
+  }
+  .sd7 {
+    font-size: 70%;
+  }
+  .container1 {
+    margin: 40px 15px 0px 20px;
+  }
+  .container3 {
+    margin: 40px 15px 0px 20px;
+    margin-bottom: -100px;
+  }
+  .container2 {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .padding {
+    padding: 5px 5px 5px 5px;
+  }
+  .padding1 {
+    margin: 30px 40px 30px 40px;
+  }
+  .marge {
+    margin-right: 7px;
+  }
+  .hover:hover {
+    color: #000;
+  }
+  .scrollable {
+    background: light;
+    position: absolute;
+    overflow: scroll;
+    padding-bottom: 00px;
+    padding-right: 140px;
+  }

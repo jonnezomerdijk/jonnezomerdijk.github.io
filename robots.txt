@@ -12,6 +12,6 @@ Disallow: /pro-gallery-webapp/v1/galleries/*
 User-agent: PetalBot
 Disallow: /
 
-Sitemap: https://www.tessavanderriet.com/sitemap.xml
+Sitemap: https://www.jonnezomerdijk.nl/sitemap.xml
 
 # Auto generated, go to SEO Tools > Robots.txt Editor to change this
