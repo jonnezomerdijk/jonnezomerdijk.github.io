@@ -1,9 +1,9 @@
 body {
-    background-color: rgb(249, 249, 249);
+    background-color: rgb(0, 0, 0);
     position: relative;
   }
   .navcolors {
-    background-color: rgb(255, 255, 255);
+    background-color:rgb(0, 0, 0);
   }
   .navpicture {
     margin-left: -0.9EM;
@@ -13,8 +13,26 @@ body {
   .nav {
     display: inline-block;
     list-style: none;
-    background: rgb(255, 255, 255);
-    height: 60px;
+    background: rgb(0, 0, 0);
+    height: 50px;
+  }
+  .rounded {
+    border-radius: 50%;
+  }
+  .nav-item {
+    display: inline-block;
+    list-style: none;
+    background: rgb(0, 0, 0);
+    width: 12vw;
+  }
+  .nav-item2 {
+    display: inline-block;
+    list-style: none;
+    background: rgb(0, 0, 0);
+    width: 4vw;
+  }
+  .nav-link:hover {
+    color:rgb(0, 0, 0);
   }
   .nav_text {
     margin: 2px -8px 2px -8px;
@@ -30,20 +48,33 @@ body {
     font-size: 145%;
     font-family: Raleway;
     font-weight: bold;
-    color: rgb(100, 100, 100);
+    text-align: center;
+    color: rgb(255, 255, 255);
   }
-  .header1 {
-    margin: 2px -2px 10px -2px;
+  .h1 {
     font-family: Raleway;
     font-size: 120%;
-    color: rgb(100, 100, 100);
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+  .header1 {
+    font-family: Raleway;
+    font-size: 120%;
+    text-align: center; 
+    color: rgb(255, 255, 255);
+  }
+  .imgc {
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 35%;
   }
   .header2 {
-    margin: 5px -2px 10px -2px;
     font-family: Raleway;
     font-weight: bold;
-    font-size: 160%;
-    color: rgb(100, 100, 100);
+    text-align: center;
+    font-size: 200%;
+    color: rgb(255, 255, 255);
   }
   .main_text {
     margin: 2px -8px 2px -8px;
@@ -52,10 +83,11 @@ body {
     text-align: left;
   }
   .wit {
-    margin: 2px -8px 2px -8px;
+    margin: -2px 0px -2px 2px;
     font-family: Raleway;
-    color: rgb(119, 119, 119);
+    color: rgb(206, 201, 201);
     text-align: center;
+    font-size: 120%;
   }
   .indent {
     margin-left: 20px;
@@ -79,10 +111,6 @@ body {
     display:block;
       position: absolute;
       visibility: hidden;
-      
-  }
-  .mt-5 {
-    text-align: center;
   }
   a {
     color: #000;
@@ -110,9 +138,6 @@ body {
   }
   .marge {
     margin-right: 7px;
-  }
-  .hover:hover {
-    color: #000;
   }
   .scrollable {
     background: light;
