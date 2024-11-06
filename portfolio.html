@@ -36,27 +36,22 @@
       <ul class="nav">
         <li class="nav-item">
           <a class="nav-link" href="index.html">
-              <p class="font-weight-bold wit hover"><img class="mr-1 mb-1" src="https://res.cloudinary.com/jonne/image/upload/v1681646486/png-home.png" alt="home" width="12px" height="auto"></img>Home</p>
+              <p class="wit hover"><img class="mr-1 mb-1" src="https://res.cloudinary.com/jonne/image/upload/v1681646486/png-home.png" alt="home" width="12px" height="auto"></img>Home</p>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="languages.html">
-              <p class="wit font-weight-bold hover">Languages</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="music.html">
-              <p class="wit font-weight-bold hover">Music</p>
+              <p class="wit hover">Languages</p>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="travel.html">
-              <p class="wit font-weight-bold hover">Travel</p>
+              <p class="wit hover">Travel</p>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="portfolio.html">
-              <p class="wit font-weight-bold hover">Portfolio</p>
+              <p class="wit hover">Portfolio</p>
             </a>
           </li>
           <li class="nav-item">
@@ -101,39 +96,75 @@
 <div class="container1">
   <span id="Portfolio" class="anchor1">
 </span>
-  <h1 class="text-center header2">Portfolio
-  </h1>
-  <div class="padding1">
-    <p class="main_text">Some of my most recent work is displayed in the 4 screenshots below this text. You can click the images to go to the corresponding page. The following descriptions that belong to each work go clockwise:<ul>
-    <li>Frida Kahlo Tribute Page, February 2018</li>
-    <li>For future</li>
-    <li>Frida Kahlo Tribute Page, February 2018</li>
-    <li>For future</li>
-      </ul>
-    </p>
-  </div>
+  <h1 class="text-center header2">Portfolio</h1>
+</br></br></br>
+
+  </br></br></br>
+    <div class="row">
+      <div class="col-sm-6 left">
+        <h2 class="headerleft">Search Functions - Elastic Search</h2>
+        </br>
+        <p class="wit">When I first started at Stuvia, one of my largest projects was to improve the search functions that were set up years before. They were based on basic statistics, and set up using functions from Elastic Search.
+          This way our search function was very fast, but it was not the most accurate. It was heavily preferring documents that were downloaded often enough, not taking into account the recency of the document. On top of that, there seemed to be several tricks for sellers that would make sure their document would end up on top of the search every time.
+          This was because previously used functions were broken, and the search function was not updated for years.</br> I was tasked to fix this, and make sure the search function was up to date and accurate.
+          I had to make complicated combinations of functions using different types of splines, whilst trying to keep it as simple as possible. In the end, the search function is an interesting combination of text match, recency, popularity and quality of the document.
+        </p>
+      </div>
+      <div class="col-sm-6 right">
+        <img style="width:85%" src="https://res.cloudinary.com/jonne/image/upload/v1730905090/Searchscorefunction.png" alt="Search scores"></img>
+      </div>
+    </div>
+  </br></br></br>
+  
+  <div class="padding1"></div>
   <div class="row">
-    <div class="col-sm-6">
-      <a type="btn-link" href="https://s.codepen.io/JonneZom/debug/RQZmqE/vPMKKVbOPxeM" target="_blank"><img class="rounded img-fluid" src="http://res.cloudinary.com/jonne/image/upload/v1519129871/Screen_Shot_2018-02-20_at_13.27.47.png" alt="TributeFrida"></img></a>
+    <div class="col-sm-6 left">
+      <img style="width:85%" src="https://res.cloudinary.com/jonne/image/upload/v1730907159/Screenshot_2024-11-06_at_16.32.31.png" alt="gluejobs"></img>
     </div>
-    <div class="col-sm-6">
-      <img class="rounded img-fluid" src="http://res.cloudinary.com/jonne/image/upload/v1519053730/Kites.jpg" alt="kites"></img>
+    <div class="col-sm-6 right">
+      <h2 class="headerright">AWS Glue → Redshift</h2>
+      </br>
+      <p class="wit">After having done my analysis using MySQL, mainly in Python Notebooks, my boss and I decided it was time to update our Data Architecture to a faster and more versatile one.</br>We decided to use AWS Glue and AWS Redshift for this, as we were already using AWS for our servers and storage.
+        In addition, Redshift seemed to be a great data warehousing framework to use, because it was very fast and could handle a lot of data, making it much better for doing analyses.
+        My task was to make sure our data was ready to be sent to AWS Glue, and to write each Glue Job using PySpark. This was a huge project, as I had to find the right combinations of tables to be sent to AWS Glue, and I had to make sure the data was sent to AWS Redshift in the right way.
+      </p>
     </div>
   </div>
+  </br></br></br>
+
+</br></br></br>
+    <div class="row">
+      <div class="col-sm-6 left">
+        <h2 class="headerleft">Payment Transaction Administration</h2>
+        <p class="subheaderleft">Missing Financials</h2>
+          <div class="padding1"></div>
+        <p class="wit">Stuvia is an international marketplace for both sellers and buyers. As a result, the company has a very complicated financial backend. It also have to deal with many different payment providers and auditors, which is why it is very important to streamline the financial administration process.
+          </br>My colleague back-end developer stringed together a bunch of APIs from our payment providers to create a collection of balancing data for a new table in our database. This table could then be used for us to audit and check if all payments were processed correctly. There were still several problems however, that were my task to fix.
+        </br>Many of the payments did not match between our administration and the balancing from the payment providers. Transactions were missing, or were not processed correctly resulting in a mismatch in amounts or banking country. My task was to identify these mismatches and researched their origins, which was a huge projects because there were many different types of issues here.
+        </p>
+      </div>
+      <div class="col-sm-6 right">
+        <img style="width:90%" src="https://res.cloudinary.com/jonne/image/upload/v1730905948/exchangerateProblem.jpg" alt="missing exchange rates"></img>
+      </div>
+    </div>
+  </br></br>
 
   <div class="padding1"></div>
-
   <div class="row">
-    <div class="col-sm-6"><img class="rounded img-fluid" src="http://res.cloudinary.com/jonne/image/upload/v1519053730/Kites.jpg" alt="kites"></img>
+    <div class="col-sm-6 left">
+      <h2 class="headerleft">Payment Transaction Administration</h2>
+      <p class="subheaderleft">Historic Exchange Rates</h2>
+        <div class="padding1"></div>
+      <p class="wit">A large issue that came up in the previously mentioned project about payment administration was the fact that financial amounts would mismatch. This was mainly because the payment provider would use up-to-date exchange rates for each transaction whilst our administration did not save current exchange rates for each transaction. This was in place because we did not have a table with historic exchange rates, as our currency converter API was updating our exchange rates for every hour, but not saving them over time.
+      </br>After a colleague made sure newly current exchange rates were now saved with every transaction, I had to make sure older transactions were backfilled using the converter API. Apart from that, my task was to create a table with historic exchange rates, which we could use for future audits. To do this, I made use of a combination of AWS Glue and AWS Lambda to send the right data to our AWS Redshift Warehouse.
+      </p>
     </div>
-    <div class="col-sm-6">
-      <a type="btn-link" href="https://s.codepen.io/JonneZom/debug/RQZmqE/vPMKKVbOPxeM" target="_blank"><img class="rounded img-fluid" src="http://res.cloudinary.com/jonne/image/upload/v1519129871/Screen_Shot_2018-02-20_at_13.27.47.png" alt="TributeFrida"></img></a>
+    <div class="col-sm-6 right">
+      <img style="width:90%" src="https://res.cloudinary.com/jonne/image/upload/v1730905913/historicExchangeRates.png" alt="exchange rates solution"></img>
     </div>
   </div>
+<div class="padding1"></div>
 
-  <div class="padding1"></div>
-
-  <img class="rounded full-width-image" align="center" src="http://res.cloudinary.com/jonne/image/upload/v1519053730/Kites.jpg" alt="kites"></img>
 </div>
 <!-- end text block Portfolio -->
 
@@ -144,10 +175,10 @@
   <div class="mt-5">
     <div class="text-center container2">
       __________________________________________________
-      <h6 class="header1 mt-5" id="About"> About
+      <h6 class="header1 mt-5" id="About">
       </h6>
       <div class="row">
-        <p class="wit col-xs-12 sd7 mb-5">This website was made and designed by: Jonne Zomerdijk<br><br>Contact me through <a class="btn-link" href="https://github.com/Jonnezom" target="blank">GitHub</a> for more information
+        <p class="wit col-xs-12 sd7 mb-5">website self-made and designed<br><br>Contact me through <a class="btn-link" href="https://github.com/Jonnezom" target="blank">GitHub</a> for more information
         </p>
       </div>
     </div>
