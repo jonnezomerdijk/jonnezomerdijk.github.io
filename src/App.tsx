@@ -8,6 +8,7 @@ import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 function App() {
+  console.log('App is rendering');  // Check if this is logged
   const [activeSection, setActiveSection] = useState('home');
 
   const scrollToSection = (section: string) => {
