@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/card';
+// @ts-ignore
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
