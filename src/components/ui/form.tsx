@@ -3,35 +3,20 @@ import * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
 import {
   Controller,
-  ControllerProps,
-  FieldPath,
-  FieldValues,
-  FormProvider,
   useFormContext,
-} from 'react-hook-form';
+  FormProvider,
+} from 'react-hook-form';  // Removed unnecessary imports
 
 import { cn } from '@/lib/utils';
 import { Label } from '@/components/ui/label';
 
 const Form = FormProvider;
 
-type FormFieldContextValue<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> = {
-  name: TName;
-};
-
-const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue
+const FormFieldContext = React.createContext<any>(
+  {} // context will infer the field values later
 );
 
-const FormField = <
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
->({
-  ...props
-}: ControllerProps<TFieldValues, TName>) => {
+const FormField = ({ ...props }: any) => {  // Removed unnecessary generics
   return (
     <FormFieldContext.Provider value={{ name: props.name }}>
       <Controller {...props} />
@@ -62,12 +47,8 @@ const useFormField = () => {
   };
 };
 
-type FormItemContextValue = {
-  id: string;
-};
-
-const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue
+const FormItemContext = React.createContext<any>(
+  {} // context value here
 );
 
 const FormItem = React.forwardRef<
