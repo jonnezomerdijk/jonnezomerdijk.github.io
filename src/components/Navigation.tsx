@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Instagram } from 'lucide-react';
 
@@ -8,23 +9,34 @@ interface NavigationProps {
 
 export function Navigation({ activeSection, onSectionChange }: NavigationProps) {
   const sections = ['home', 'experience', 'portfolio', 'personal', 'contact'];
-  
+
   return (
     <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-sm z-50 border-b border-white/10">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex gap-6 overflow-x-auto hide-scrollbar">
             {sections.map((section) => (
-              <Button
-                key={section}
-                variant="ghost"
-                className={`text-white hover:text-white/80 capitalize whitespace-nowrap ${
-                  activeSection === section ? 'bg-white/10' : ''
-                }`}
-                onClick={() => onSectionChange(section)}
-              >
-                {section}
-              </Button>
+              section === 'contact' ? (
+                <Button
+                  key={section}
+                  variant="ghost"
+                  className="text-white hover:text-white/80 capitalize whitespace-nowrap"
+                  onClick={() => window.location.href = 'mailto:jonnezomerdijk@hotmail.com'}
+                >
+                  {section}
+                </Button>
+              ) : (
+                <Button
+                  key={section}
+                  variant="ghost"
+                  className={`text-white hover:text-white/80 capitalize whitespace-nowrap ${
+                    activeSection === section ? 'bg-white/10' : ''
+                  }`}
+                  onClick={() => onSectionChange(section)}
+                >
+                  {section}
+                </Button>
+              )
             ))}
           </div>
           <div className="flex gap-4">
@@ -49,3 +61,5 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
     </nav>
   );
 }
+
+export default Navigation;
