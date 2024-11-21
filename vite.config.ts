@@ -10,11 +10,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  optimizeDeps: {
-    exclude: ['lucide-react'],  // Exclude lucide-react if it's large or unnecessary during optimization
-  },
   build: {
-    minify: true,  // Enable minification for production (you may set it to false to test)
     outDir: 'dist',  // Output directory for the build
     assetsDir: 'assets',  // Directory for the static assets like images, CSS, etc.
     sourcemap: true,  // Disable sourcemaps in production for smaller builds, set to `true` for debugging
