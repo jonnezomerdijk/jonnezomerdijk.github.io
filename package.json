@@ -1,8 +1,8 @@
 {
-  "name": "vite-react-typescript-starter",
-  "private": true,
+  "name": "portfolio",
+  "private": false,
   "version": "0.0.0",
-  "homepage": "https://jonnezomerdijk.github.io/",
+  "homepage": "https://jonnezomerdijk.github.io/jonnezomerdijk.github.io",
   "type": "module",
   "scripts": {
     "dev": "vite",
