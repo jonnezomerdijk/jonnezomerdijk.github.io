@@ -30,7 +30,7 @@ function App() {
             <div>
               <h1 className="text-4xl font-bold mb-6">Jonne Zomerdijk</h1>
               <p className="text-lg text-gray-300 mb-8">
-                Data Scientist with 4+ Years of Expertise in Advanced Data Analysis, Engineering, and Visualization to Drive Business Performance
+                Data Scientist with 4+ years of expertise in Advanced Data Analysis, Engineering, and Visualization to drive business performance
               </p>
               <div className="flex gap-4">
                 <Button onClick={() => scrollToSection('experience')}>
@@ -38,7 +38,7 @@ function App() {
                   <ChevronDown className="ml-2 h-4 w-4" />
                 </Button>
                 <Button variant="outline" asChild>
-                  <a href="Zomerdijk_J.CV_(EN-2024).pdf" target="_blank">Download CV</a>
+                  <a href="./assets/Zomerdijk_J.CV_(EN-2024).pdf" target="_blank">Download CV</a>
                 </Button>
               </div>
             </div>

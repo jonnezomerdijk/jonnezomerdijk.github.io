@@ -22,6 +22,13 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ title, description, fullDescription, image, technologies, onClick, isOpen, onClose }: ProjectCardProps) {
+  const formattedDescription = fullDescription.split('\n').map((item, index) => (
+    <span key={index}>
+      {item}
+      <br />
+    </span>
+  ));
+
   return (
     <Dialog open={isOpen} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
       <DialogTrigger asChild>
@@ -48,7 +55,7 @@ export function ProjectCard({ title, description, fullDescription, image, techno
               className="w-full rounded-lg my-4 aspect-video object-cover"
             />
             <div className="space-y-4">
-              <p className="text-gray-300">{fullDescription}</p>
+              <p className="text-gray-300">{formattedDescription}</p> {/* Render formatted description */}
               <div className="flex flex-wrap gap-2">
                 {technologies.map((tech) => (
                   <span
