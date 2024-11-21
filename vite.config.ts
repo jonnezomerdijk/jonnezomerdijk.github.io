@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/jonnezomerdijk.github.io/',  // Ensure the base path is correct for deployment on GitHub Pages
+  base: '/',  // Ensure the base path is correct for deployment on GitHub Pages
   plugins: [react()],
   resolve: {
     alias: {
@@ -17,7 +17,7 @@ export default defineConfig({
     minify: true,  // Enable minification for production (you may set it to false to test)
     outDir: 'dist',  // Output directory for the build
     assetsDir: 'assets',  // Directory for the static assets like images, CSS, etc.
-    sourcemap: false,  // Disable sourcemaps in production for smaller builds, set to `true` for debugging
+    sourcemap: true,  // Disable sourcemaps in production for smaller builds, set to `true` for debugging
     rollupOptions: {
       output: {
         manualChunks: {
