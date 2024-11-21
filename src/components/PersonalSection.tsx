@@ -1,8 +1,6 @@
-// @ts-ignore
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Card } from '@/components/ui/card';
-// @ts-ignore
-import { Button } from '@/components/ui/button';
+// import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export function PersonalSection() {
