@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './',
+  base: './',  // Ensures the assets are linked correctly for GitHub Pages
   plugins: [react()],
   resolve: {
     alias: {
@@ -11,26 +11,21 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
+    outDir: 'dist',  // This is where the build files will go
+    assetsDir: 'assets',  // All your static assets will go here
+    copyPublicDir: true,
     sourcemap: true,
     rollupOptions: {
-      input: './src/main.tsx',
+      input: './src/main.tsx',  // The entry file for your app
       output: {
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name].[ext]',
-        manualChunks: {
-          'vendor': ['react', 'react-dom'],
-          'ui': ['@radix-ui/react-dialog', '@radix-ui/react-tabs'],
-        },
       },
     },
-    // Add this to ensure correct MIME types
     assetsInlineLimit: 0,
   },
   esbuild: {
-    // Ensure TypeScript files are properly transformed
-    jsx: 'automatic'
-  }
+    jsx: 'automatic',
+  },
 });
