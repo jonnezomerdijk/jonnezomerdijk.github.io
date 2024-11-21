@@ -38,7 +38,7 @@ function App() {
                   <ChevronDown className="ml-2 h-4 w-4" />
                 </Button>
                 <Button variant="outline" asChild>
-                  <a href="./assets/Zomerdijk_J.CV_(EN-2024).pdf" target="_blank">Download CV</a>
+                  <a href="/assets/Zomerdijk_J.CV_(EN-2024).pdf" target="_blank">Download CV</a>
                 </Button>
               </div>
             </div>

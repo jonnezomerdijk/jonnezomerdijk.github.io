@@ -1,5 +1,4 @@
 import { Card } from '@/components/ui/card';
-// @ts-ignore
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -21,14 +20,16 @@ interface ProjectCardProps {
   onClose: () => void;
 }
 
-export function ProjectCard({ title, description, fullDescription, image, technologies, onClick, isOpen, onClose }: ProjectCardProps) {
-  const formattedDescription = fullDescription.split('\n').map((item, index) => (
-    <span key={index}>
-      {item}
-      <br />
-    </span>
-  ));
-
+export function ProjectCard({
+  title,
+  description,
+  fullDescription,
+  image,
+  technologies,
+  onClick,
+  isOpen,
+  onClose,
+}: ProjectCardProps) {
   return (
     <Dialog open={isOpen} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
       <DialogTrigger asChild>
@@ -55,7 +56,8 @@ export function ProjectCard({ title, description, fullDescription, image, techno
               className="w-full rounded-lg my-4 aspect-video object-cover"
             />
             <div className="space-y-4">
-              <p className="text-gray-300">{formattedDescription}</p> {/* Render formatted description */}
+              {/* Apply white-space: pre-line to the description to preserve newlines */}
+              <p className="text-gray-300 whitespace-pre-line">{fullDescription}</p> 
               <div className="flex flex-wrap gap-2">
                 {technologies.map((tech) => (
                   <span
