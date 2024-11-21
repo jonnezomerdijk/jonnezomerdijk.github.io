@@ -30,7 +30,7 @@ function App() {
             <div>
               <h1 className="text-4xl font-bold mb-6">Jonne Zomerdijk</h1>
               <p className="text-lg text-gray-300 mb-8">
-                Data Scientist/Analyst with 3 years of experience in analyzing and interpreting large datasets to uncover insights and improve business performance.
+                Data Scientist with 4+ Years of Expertise in Advanced Data Analysis, Engineering, and Visualization to Drive Business Performance
               </p>
               <div className="flex gap-4">
                 <Button onClick={() => scrollToSection('experience')}>

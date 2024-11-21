@@ -16,13 +16,19 @@ interface ProjectCardProps {
   fullDescription: string;
   image: string;
   technologies: string[];
+  onClick: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export function ProjectCard({ title, description, fullDescription, image, technologies }: ProjectCardProps) {
+export function ProjectCard({ title, description, fullDescription, image, technologies, onClick, isOpen, onClose }: ProjectCardProps) {
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
       <DialogTrigger asChild>
-        <Card className="p-6 bg-black/50 border-white/10 hover:bg-white/5 transition-colors cursor-pointer min-w-[300px] md:min-w-[400px]">
+        <Card
+          className="p-6 bg-black/50 border-white/10 hover:bg-white/5 transition-colors cursor-pointer min-w-[300px] md:min-w-[400px]"
+          onClick={onClick}
+        >
           <h3 className="text-xl font-semibold mb-4">{title}</h3>
           <img
             src={image}

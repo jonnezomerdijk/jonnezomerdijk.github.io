@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProjectCard } from './ProjectCard';
@@ -37,6 +37,7 @@ Many of the payments did not match between our administration and the balancing 
 
 export function PortfolioSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState<number | null>(null);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -47,6 +48,33 @@ export function PortfolioSection() {
       });
     }
   };
+
+  const openProject = (index: number) => {
+    setCurrentProjectIndex(index);
+  };
+
+  const closeProject = () => {
+    setCurrentProjectIndex(null);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (currentProjectIndex !== null) {
+      if (event.key === 'ArrowRight') {
+        setCurrentProjectIndex((prevIndex) => (prevIndex !== null ? (prevIndex + 1) % projects.length : 0));
+      } else if (event.key === 'ArrowLeft') {
+        setCurrentProjectIndex((prevIndex) => (prevIndex !== null ? (prevIndex - 1 + projects.length) % projects.length : projects.length - 1));
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (currentProjectIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [currentProjectIndex]);
 
   return (
     <section id="portfolio" className="py-20">
@@ -66,8 +94,14 @@ export function PortfolioSection() {
           ref={scrollContainerRef}
           className="flex gap-6 overflow-x-auto hide-scrollbar pb-4"
         >
-          {projects.map((project) => (
-            <ProjectCard key={project.title} {...project} />
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.title}
+              {...project}
+              onClick={() => openProject(index)}
+              isOpen={currentProjectIndex === index}
+              onClose={closeProject}
+            />
           ))}
         </div>
       </div>

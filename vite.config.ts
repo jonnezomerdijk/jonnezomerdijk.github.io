@@ -16,7 +16,7 @@ export default defineConfig({
     copyPublicDir: true,
     sourcemap: true,
     rollupOptions: {
-      input: './src/main.tsx',  // The entry file for your app
+      input: './index.html',  // The entry file for your app
       output: {
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name]-[hash].js',
