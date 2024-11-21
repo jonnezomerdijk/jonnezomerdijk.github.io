@@ -17,7 +17,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         entryFileNames: 'assets/[name].js',
-        chunkFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name].[ext]',
         manualChunks: {
           'vendor': ['react', 'react-dom'],
@@ -28,4 +28,8 @@ export default defineConfig({
     // Add this to ensure correct MIME types
     assetsInlineLimit: 0,
   },
+  esbuild: {
+    // Ensure TypeScript files are properly transformed
+    jsx: 'automatic'
+  }
 });
