@@ -1,11 +1,8 @@
-name: Deploy Vite React App
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
-
-permissions:
-  contents: write
 
 jobs:
   build-and-deploy:
@@ -14,26 +11,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Add .htaccess
-        run: |
-          echo "AddType application/javascript .js" > dist/.htaccess
-          echo "<IfModule mod_mime.c>" >> dist/.htaccess
-          echo "    AddType application/javascript .js" >> dist/.htaccess
-          echo "</IfModule>" >> dist/.htaccess
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          folder: dist
-          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: jonnezomerdijk.nl  # Specify your custom domain
