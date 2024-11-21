@@ -5,9 +5,10 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "jsx": "react",
-    "target": "es5",
-    "module": "commonjs",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "esnext",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "strict": true,

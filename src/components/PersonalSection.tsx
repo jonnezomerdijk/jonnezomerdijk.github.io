@@ -52,7 +52,7 @@ export function PersonalSection() {
               <div className="grid md:grid-cols-2 gap-12">
                 <div>
                   <img
-                    src="http://res.cloudinary.com/jonne/image/upload/v1519130561/MUKC6488.jpg"
+                    src="https://res.cloudinary.com/jonne/image/upload/v1519130561/MUKC6488.jpg"
                     alt="Travel"
                     className="rounded-lg mb-4"
                   />

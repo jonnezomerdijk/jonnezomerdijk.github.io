@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import { Navigation } from '@/components/Navigation';
 import { ExperienceSection } from '@/components/ExperienceSection';
 import { PortfolioSection } from '@/components/PortfolioSection';
@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 
 function App() {
   console.log('App is rendering');  // Check if this is logged
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = React.useState('home');
 
   const scrollToSection = (section: string) => {
     setActiveSection(section);
@@ -44,7 +44,7 @@ function App() {
             </div>
             <div className="relative">
               <img
-                src="http://res.cloudinary.com/jonne/image/upload/v1519083282/Jonne.jpg"
+                src="https://res.cloudinary.com/jonne/image/upload/v1519083282/Jonne.jpg"
                 alt="Jonne Zomerdijk"
                 className="rounded-lg shadow-xl w-full max-w-md mx-auto main-image"
               />
