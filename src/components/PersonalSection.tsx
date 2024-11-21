@@ -18,10 +18,11 @@ export function PersonalSection() {
           <TabsContent value="languages">
             <Card className="p-6 bg-black/50 border-white/10">
               <p className="text-gray-300 mb-6">
-                During my Erasmus exchange in Budapest, I developed a strong interest in languages, particularly Spanish. 
-                Starting with Duolingo and progressing through university courses, I achieved proficiency through practical 
-                experience in Madrid and South America. Later, while working in tourism, I picked up Italian and spent a 
-                month in Florence improving my skills.
+                From February to July 2015 I went on an Erasmus exchange in Budapest, Hungary. At the time, I started to develop an in interest in the Spanish language.
+                Starting with a simple course in Duolingo, my interest started to dwell and before I knew it I was looking up every word that came into my mind. I decided to take a university course in Spanish and finished Spanish 1 and 2 with good grades, and also went to Madrid for a week to visit some friends and practice even more!
+                Then I started working in several touristic companies, which helped me a lot with my language practice, for about a year in total to save up to travel around South America. My Spanish level has peaked since I did embark on that trip of which you can read more in the Travel-sector of this page. After not having practiced much for several years, I moved to Barcelona in August 2022 putting me in a great spot to practice once again.
+
+                During that same Erasmus, I had many Italian friends. That's why when I started to work in tourism I already knew quite some Italian words. In September 2021, I decided to take it a step further by spending a month in Florence, and doing a full course of A1 and A2 Italian. I have been practicing every once in a while since then.
               </p>
               <div className="grid md:grid-cols-2 gap-8">
                 {[
@@ -61,9 +62,13 @@ export function PersonalSection() {
                 <div>
                   <h3 className="text-xl font-semibold mb-4">International Experience</h3>
                   <p className="text-gray-300">
-                    My journey began with an Erasmus exchange in Budapest, Hungary, which sparked my 
-                    interest in international experiences. I've since traveled extensively through 
-                    South America, worked in tourism, and lived in Barcelona, each experience 
+                    When I was young I was lucky enough to have parents that brought me to many beautiful places around the world. Together with my mother, my father, and my sister, I traveled to several destinations rich of culture and usually sunny weather.
+                    Although that's still my favorite type of destination, I have developed a more wide interest in traveling in my adolescent years. 
+                    My personal journey began with an Erasmus exchange in Budapest, Hungary, which sparked my interest in international experiences.
+
+                    Since then I started to travel a lot on my own, visiting friends or hopping hostels mainly within Europe. I've been on amazing trips, but I've also experienced how things can go wrong.
+                    I learned a lot more about different types of tourism and what type I like the best myself. I worked in tourism,
+                    traveled extensively through South America, and I'm now living in Barcelona, each experience 
                     enriching my cultural understanding and language skills.
                   </p>
                 </div>

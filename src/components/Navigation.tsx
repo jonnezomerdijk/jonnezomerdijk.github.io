@@ -11,6 +11,14 @@ interface NavigationProps {
 export function Navigation({ activeSection, onSectionChange }: NavigationProps) {
   const sections = ['home', 'experience', 'portfolio', 'personal', 'contact'];
 
+  // Smooth scroll function to scroll to the contact section
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-sm z-50 border-b border-white/10">
       <div className="container mx-auto px-4 py-4">
@@ -22,7 +30,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
                   key={section}
                   variant="ghost"
                   className="text-white hover:text-white/80 capitalize whitespace-nowrap"
-                  onClick={() => window.location.href = 'mailto:jonnezomerdijk@hotmail.com'}
+                  onClick={scrollToContact}  // Change to use the scroll function
                 >
                   {section}
                 </Button>

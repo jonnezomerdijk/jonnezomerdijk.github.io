@@ -22,6 +22,17 @@ const experiences = [
       'Analyzed article success through contextual variables',
       'Implemented visualization using Looker'
     ]
+  },
+  {
+    title: 'Intern Data Analysis',
+    company: 'Prowise Learn',
+    location: 'Amsterdam, NL',
+    period: 'Feb 2020 - Jul 2020',
+    description: `Prowise Learn, formerly called "Oefenweb", is a software company with an application that contains adaptive online exercises for primary and secondary education.`,
+    achievements: [
+      'Worked on an adaptive scoring system by psychometrically analyzing and evaluating scoring values',
+      'Enhanced skills in psychometric evaluation and analysis'
+    ]
   }
 ];
 

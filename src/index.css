@@ -49,3 +49,7 @@ html {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.main-image {
+  filter: brightness(0.90);
+}

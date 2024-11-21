@@ -3,7 +3,7 @@ import { Navigation } from '@/components/Navigation';
 import { ExperienceSection } from '@/components/ExperienceSection';
 import { PortfolioSection } from '@/components/PortfolioSection';
 import { PersonalSection } from '@/components/PersonalSection';
-// import { ContactSection } from '@/components/ContactSection';
+import { ContactSection } from '@/components/ContactSection';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -46,7 +46,7 @@ function App() {
               <img
                 src="http://res.cloudinary.com/jonne/image/upload/v1519083282/Jonne.jpg"
                 alt="Jonne Zomerdijk"
-                className="rounded-lg shadow-xl w-full max-w-md mx-auto"
+                className="rounded-lg shadow-xl w-full max-w-md mx-auto main-image"
               />
             </div>
           </div>
@@ -56,7 +56,7 @@ function App() {
       <ExperienceSection />
       <PortfolioSection />
       <PersonalSection />
-      {/* <ContactSection /> */}
+      <ContactSection />
 
       {/* Footer */}
       <footer className="py-8 border-t border-white/10">

@@ -27,7 +27,7 @@ export function ProjectCard({ title, description, fullDescription, image, techno
           <img
             src={image}
             alt={title}
-            className="w-full rounded-lg mb-4 aspect-video object-cover"
+            className="rounded-lg mb-4 aspect-video object-cover h-48 w-64 rounded-md"
           />
           <p className="text-gray-300 line-clamp-2">{description}</p>
         </Card>
