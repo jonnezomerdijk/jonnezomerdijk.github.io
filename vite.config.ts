@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/', 
+  base: '/jonnezomerdijk.github.io/',  // Ensure the base path is correct for deployment on GitHub Pages
   plugins: [react()],
   resolve: {
     alias: {
@@ -11,19 +11,20 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    exclude: ['lucide-react'],  // Exclude lucide-react if it's large or unnecessary during optimization
   },
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    sourcemap: true,
+    minify: true,  // Enable minification for production (you may set it to false to test)
+    outDir: 'dist',  // Output directory for the build
+    assetsDir: 'assets',  // Directory for the static assets like images, CSS, etc.
+    sourcemap: false,  // Disable sourcemaps in production for smaller builds, set to `true` for debugging
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor': ['react', 'react-dom'],
-          'ui': ['@radix-ui/react-dialog', '@radix-ui/react-tabs']
-        }
-      }
-    }
-  }
+          'vendor': ['react', 'react-dom'],  // Separate vendor code into a chunk
+          'ui': ['@radix-ui/react-dialog', '@radix-ui/react-tabs'],  // Optional, for custom chunking
+        },
+      },
+    },
+  },
 });
