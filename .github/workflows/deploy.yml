@@ -2,7 +2,7 @@ name: Deploy Vite React App
 
 on:
   push:
-    branches: [main]  # or your default branch name
+    branches: [main]
 
 permissions:
   contents: write
@@ -11,7 +11,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Use Node.js
@@ -19,11 +19,18 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Build project
+      - name: Build
         run: npm run build
+
+      - name: Add .htaccess
+        run: |
+          echo "AddType application/javascript .js" > dist/.htaccess
+          echo "<IfModule mod_mime.c>" >> dist/.htaccess
+          echo "    AddType application/javascript .js" >> dist/.htaccess
+          echo "</IfModule>" >> dist/.htaccess
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
