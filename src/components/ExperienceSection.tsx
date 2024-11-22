@@ -1,4 +1,7 @@
+import { useRef } from 'react';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const experiences = [
   {
@@ -61,11 +64,32 @@ const education = [
   }
 ];
 
+const skills = [
+  { category: 'Programming', items: ['Python', 'R', 'MySQL', 'Redshift SQL', 'CSS'] },
+  { category: 'Data Analysis', items: ['Pandas', 'NumPy', 'Scikit-learn', 'HuggingFace', 'TensorFlow'] },
+  { category: 'Engineering Tools', items: ['AWS Glue', 'Amazon Redshift', 'AWS Lambda', 'PySpark'] },
+  { category: 'Visualization', items: ['Plotly', 'Looker', 'Matplotlib', 'Seaborn'] },
+  { category: 'Other Tools', items: ['Amplitude', 'SPSS', 'GitHub', 'Jupyter Notebooks'] },
+];
+
 export function ExperienceSection() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 400;
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+  
   return (
     <section id="experience" className="py-20 bg-white/5">
       <div className="container mx-auto px-4">
         <div className="space-y-12">
+
           <div>
             <h2 className="text-3xl font-bold mb-8">Experience</h2>
             <div className="space-y-6">
@@ -111,6 +135,43 @@ export function ExperienceSection() {
               ))}
             </div>
           </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-bold">Skills</h2>
+              <div className="flex gap-2">
+                <Button variant="outline" size="icon" onClick={() => scroll('left')}>
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="icon" onClick={() => scroll('right')}>
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+            <div 
+              ref={scrollContainerRef}
+              className="overflow-x-auto hide-scrollbar"
+            >
+              <div className="flex gap-6 pb-4" style={{ minWidth: 'min-content' }}>
+                {skills.map((skillGroup) => (
+                  <Card key={skillGroup.category} className="p-6 bg-black/50 border-white/10" style={{ minWidth: '300px' }}>
+                    <h3 className="text-xl font-semibold mb-4">{skillGroup.category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {skillGroup.items.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-3 py-1 bg-white/10 rounded-full text-gray-300 hover:bg-white/20 transition-colors"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
