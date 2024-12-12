@@ -8,7 +8,7 @@ const experiences = [
     title: 'Data Analyst',
     company: 'Stuvia',
     location: 'Amsterdam, NL',
-    period: 'Since Dec 2021',
+    period: 'Dec 2021 - present',
     description: 'Responsible for analysis in marketing, finance, and user experience. Tracking user behavior to optimize website functionalities.',
     achievements: [
       'Reconstructed search function formulas and weights',
@@ -44,8 +44,8 @@ const education = [
     degree: 'MSc Behavioural Data Science',
     institution: 'University of Amsterdam',
     location: 'Amsterdam, NL',
-    period: '2019 - 2021',
-    description: "This master's combines techniques from Psychology with approaches from computer science, teaching the use of big data to better understand and predict human behaviour.",
+    period: 'Sep 2019 - Sep 2021',
+    description: "This master's (and premaster's) combines techniques from Psychology with approaches from computer science, teaching the use of big data to better understand and predict human behaviour.",
     achievements: [
       'Thesis: "Assessing the Role of Goal Types in Pedestrian Behaviour: a Simulation Study"',
       'Graduated cum laude with a 9/10 thesis grade'
@@ -55,7 +55,7 @@ const education = [
     degree: 'BSc Psychology',
     institution: 'Vrije Universiteit Amsterdam',
     location: 'Amsterdam, NL',
-    period: '2012 - 2016',
+    period: 'Sep 2012 - Jul 2016',
     description: 'Focused on Cognitive Psychology, gaining experience in quantitative analysis with SPSS.',
     achievements: [
       'Thesis: "Temporal Order in the Visual Working Memory"',
