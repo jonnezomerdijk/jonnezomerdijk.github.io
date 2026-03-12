@@ -1,56 +1,52 @@
 import { Github, Linkedin, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 export function ContactSection() {
   return (
-    <section id="contact" className="text-white">
-      {/* Gray background section with no padding on top */}
-      <section className="w-full bg-gray-800">
-        <div className="container mx-auto px-4 py-4"> {/* Reduced top padding */}
-          <h2 className="text-2xl font-bold mb-4">Contact</h2> {/* Reduced font size */}
-          <p className="text-sm">Feel free to reach out with any questions!</p> {/* Reduced font size */}
-        </div>
-      </section>
+    <section id="contact" className="py-20">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold mb-8 font-heading">Contact</h2>
+        <Card className="p-8 bg-card border-border">
+          <p className="text-muted-foreground mb-6">Feel free to reach out with any questions!</p>
 
-      {/* Personal Details with Full Width Black Background */}
-      <div className="mt-4 bg-black p-6 rounded-lg w-full"> {/* Reduced top margin */}
-        <div className="space-y-1 text-sm"> {/* Reduced space between items */}
-          <div className="flex">
-            <p className="text-gray-600 w-28">Name:</p>
-            <p className="ml-2 text-gray-400">Jonne Zomerdijk</p> {/* Reduced margin */}
+          <div className="space-y-3 text-sm">
+            <div className="flex">
+              <p className="text-muted-foreground w-28">Name:</p>
+              <p className="text-foreground">Jonne Zomerdijk</p>
+            </div>
+            <div className="flex">
+              <p className="text-muted-foreground w-28">Location:</p>
+              <p className="text-foreground">Barcelona, Spain</p>
+            </div>
+            <div className="flex">
+              <p className="text-muted-foreground w-28">E-mail:</p>
+              <p>
+                <a href="mailto:jonnezomerdijk@hotmail.com" className="text-primary hover:text-primary/80 transition-colors">
+                  jonnezomerdijk@hotmail.com
+                </a>
+              </p>
+            </div>
           </div>
-          <div className="flex">
-            <p className="text-gray-600 w-28">Location:</p>
-            <p className="ml-2 text-gray-400">Barcelona, Spain</p> {/* Reduced margin */}
-          </div>
-          <div className="flex">
-            <p className="text-gray-600 w-28">E-mail:</p>
-            <p className="ml-2 text-gray-400">
-              <a href="mailto:jonnezomerdijk@hotmail.com" className="text-gray-400 hover:text-blue-200">
-                jonnezomerdijk@hotmail.com
-              </a>
-            </p>
-          </div>
-        </div>
 
-        {/* Social Media Links */}
-        <div className="flex gap-4 mt-4"> {/* Reduced top margin */}
-          <a href="https://github.com/Jonnezom" target="_blank" rel="noreferrer">
-            <Button variant="ghost" size="icon" className="text-gray-600 hover:text-gray-400">
-              <Github className="h-5 w-5" />
-            </Button>
-          </a>
-          <a href="https://www.linkedin.com/in/jonne-zomerdijk-36b49285/" target="_blank" rel="noreferrer">
-            <Button variant="ghost" size="icon" className="text-gray-600 hover:text-gray-400">
-              <Linkedin className="h-5 w-5" />
-            </Button>
-          </a>
-          <a href="https://instagram.com/djonkobonko" target="_blank" rel="noreferrer">
-            <Button variant="ghost" size="icon" className="text-gray-600 hover:text-gray-400">
-              <Instagram className="h-5 w-5" />
-            </Button>
-          </a>
-        </div>
+          <div className="flex gap-3 mt-6">
+            <a href="https://github.com/Jonnezom" target="_blank" rel="noreferrer">
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary transition-colors">
+                <Github className="h-5 w-5" />
+              </Button>
+            </a>
+            <a href="https://www.linkedin.com/in/jonne-zomerdijk-36b49285/" target="_blank" rel="noreferrer">
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </Button>
+            </a>
+            <a href="https://instagram.com/djonkobonko" target="_blank" rel="noreferrer">
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary transition-colors">
+                <Instagram className="h-5 w-5" />
+              </Button>
+            </a>
+          </div>
+        </Card>
       </div>
     </section>
   );

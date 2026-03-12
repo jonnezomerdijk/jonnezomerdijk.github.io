@@ -1,28 +1,36 @@
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 0%;
-  --foreground: 0 0% 100%;
-  --card: 0 0% 0%;
-  --card-foreground: 0 0% 100%;
-  --popover: 0 0% 0%;
-  --popover-foreground: 0 0% 100%;
-  --primary: 0 0% 100%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 0 0% 10%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 0 0% 10%;
-  --muted-foreground: 0 0% 70%;
-  --accent: 0 0% 10%;
-  --accent-foreground: 0 0% 100%;
+  --background: 222 47% 5%;
+  --foreground: 215 25% 89%;
+  --card: 222 47% 7%;
+  --card-foreground: 215 25% 89%;
+  --popover: 222 47% 7%;
+  --popover-foreground: 215 25% 89%;
+  --primary: 191 91% 43%;
+  --primary-foreground: 222 47% 5%;
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 215 25% 89%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 16% 57%;
+  --accent: 217 91% 60%;
+  --accent-foreground: 215 25% 89%;
   --destructive: 0 100% 50%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 20%;
-  --input: 0 0% 20%;
-  --ring: 0 0% 100%;
+  --destructive-foreground: 215 25% 89%;
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 191 91% 43%;
   --radius: 0.75rem;
+  --chart-1: 191 91% 43%;
+  --chart-2: 217 91% 60%;
+  --chart-3: 172 66% 50%;
+  --chart-4: 198 93% 60%;
+  --chart-5: 250 60% 60%;
 }
 
 body {
@@ -32,8 +40,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-  color: white;
+  background-color: hsl(222 47% 5%);
+  color: hsl(215 25% 89%);
 }
 
 html {
@@ -52,4 +60,31 @@ html {
 
 .main-image {
   filter: brightness(0.90);
+}
+
+/* Fade in up animation for scroll reveals */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress bar fill animation */
+@keyframes progress-fill {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(var(--progress-value, -100%));
+  }
+}
+
+/* Subtle glow for accent elements */
+.glow-primary {
+  box-shadow: 0 0 20px hsl(191 91% 43% / 0.15);
 }

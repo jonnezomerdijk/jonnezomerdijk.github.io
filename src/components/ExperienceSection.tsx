@@ -1,79 +1,80 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { useData } from '@/contexts/DataContext';
+import { AdminControls } from '@/components/admin/AdminControls';
+import { ExperienceForm } from '@/components/admin/ExperienceForm';
+import { EducationForm } from '@/components/admin/EducationForm';
+import { SkillForm } from '@/components/admin/SkillForm';
+import { DeleteConfirmDialog } from '@/components/admin/DeleteConfirmDialog';
+import type { Experience, Education, Skill } from '@/types';
 
-const experiences = [
-  {
-    title: 'Data Analyst',
-    company: 'Stuvia',
-    location: 'Amsterdam, NL',
-    period: 'Dec 2021 - present',
-    description: 'Responsible for analysis in marketing, finance, and user experience. Tracking user behavior to optimize website functionalities.',
-    achievements: [
-      'Reconstructed search function formulas and weights',
-      'Set up AWS Redshift data warehouse using AWS Glue'
-    ]
-  },
-  {
-    title: 'Intern Data Science',
-    company: 'DPG Media',
-    location: 'Amsterdam, NL',
-    period: 'May 2021 - Sep 2021',
-    description: 'Part of the News Analytics Team at the biggest media company in Benelux.',
-    achievements: [
-      'Analyzed article success through contextual variables',
-      'Implemented visualization using Looker'
-    ]
-  },
-  {
-    title: 'Intern Data Analysis',
-    company: 'Prowise Learn',
-    location: 'Amsterdam, NL',
-    period: 'Feb 2020 - Jul 2020',
-    description: `Prowise Learn, formerly called "Oefenweb", is a software company with an application that contains adaptive online exercises for primary and secondary education.`,
-    achievements: [
-      'Worked on an adaptive scoring system by psychometrically analyzing and evaluating scoring values',
-      'Enhanced skills in psychometric evaluation and analysis'
-    ]
-  }
-];
+function SkillBar({ name, proficiency }: { name: string; proficiency: number }) {
+  const [inView, setInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-const education = [
-  {
-    degree: 'MSc Behavioural Data Science',
-    institution: 'University of Amsterdam',
-    location: 'Amsterdam, NL',
-    period: 'Sep 2019 - Sep 2021',
-    description: "This master's (and premaster's) combines techniques from Psychology with approaches from computer science, teaching the use of big data to better understand and predict human behaviour.",
-    achievements: [
-      'Thesis: "Assessing the Role of Goal Types in Pedestrian Behaviour: a Simulation Study"',
-      'Graduated cum laude with a 9/10 thesis grade'
-    ]
-  },
-  {
-    degree: 'BSc Psychology',
-    institution: 'Vrije Universiteit Amsterdam',
-    location: 'Amsterdam, NL',
-    period: 'Sep 2012 - Jul 2016',
-    description: 'Focused on Cognitive Psychology, gaining experience in quantitative analysis with SPSS.',
-    achievements: [
-      'Thesis: "Temporal Order in the Visual Working Memory"',
-      'Created experiments using Python-based OpenSesame software'
-    ]
-  }
-];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true); },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
-const skills = [
-  { category: 'Programming', items: ['Python', 'R', 'MySQL', 'Redshift SQL', 'CSS'] },
-  { category: 'Data Analysis', items: ['Pandas', 'NumPy', 'Scikit-learn', 'HuggingFace', 'TensorFlow'] },
-  { category: 'Engineering Tools', items: ['AWS Glue', 'Amazon Redshift', 'AWS Lambda', 'PySpark'] },
-  { category: 'Visualization', items: ['Plotly', 'Looker', 'Matplotlib', 'Seaborn'] },
-  { category: 'Other Tools', items: ['Amplitude', 'SPSS', 'GitHub', 'Jupyter Notebooks'] },
-];
+  return (
+    <div ref={ref} className="space-y-1.5">
+      <div className="flex justify-between text-sm">
+        <span className="text-foreground font-medium">{name}</span>
+        <span className="text-muted-foreground">{proficiency}%</span>
+      </div>
+      <Progress value={inView ? proficiency : 0} className="h-2 bg-secondary" />
+    </div>
+  );
+}
 
 export function ExperienceSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const { isAdmin } = useAuth();
+  const { experiences, education, skills, deleteExperience, deleteEducation, deleteSkill, updateSkill } = useData();
+
+  // Admin state
+  const [expFormOpen, setExpFormOpen] = useState(false);
+  const [editingExp, setEditingExp] = useState<Experience | undefined>();
+  const [eduFormOpen, setEduFormOpen] = useState(false);
+  const [editingEdu, setEditingEdu] = useState<Education | undefined>();
+  const [skillFormOpen, setSkillFormOpen] = useState(false);
+  const [editingSkill, setEditingSkill] = useState<Skill | undefined>();
+  const [defaultSkillCategory, setDefaultSkillCategory] = useState<string | undefined>();
+  const [deleteTarget, setDeleteTarget] = useState<{ type: 'experience' | 'education' | 'skill'; id: string; name: string } | null>(null);
+
+  // Group skills by category
+  const skillGroups = useMemo(() => {
+    const groups: Record<string, { name: string; proficiency: number; id: string }[]> = {};
+    for (const skill of skills) {
+      if (!groups[skill.category]) groups[skill.category] = [];
+      groups[skill.category].push({ name: skill.name, proficiency: skill.proficiency, id: skill.id });
+    }
+    return Object.entries(groups).map(([category, items]) => ({ category, items }));
+  }, [skills]);
+
+  const moveSkillCategory = async (categoryIndex: number, direction: 'left' | 'right') => {
+    const targetIndex = direction === 'left' ? categoryIndex - 1 : categoryIndex + 1;
+    if (targetIndex < 0 || targetIndex >= skillGroups.length) return;
+    const newGroups = [...skillGroups];
+    [newGroups[categoryIndex], newGroups[targetIndex]] = [newGroups[targetIndex], newGroups[categoryIndex]];
+    await Promise.all(
+      newGroups.flatMap((group, catIdx) =>
+        group.items.map((skill, skillIdx) =>
+          updateSkill(skill.id, { order: catIdx * 100 + skillIdx })
+        )
+      )
+    );
+  };
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -84,86 +85,215 @@ export function ExperienceSection() {
       });
     }
   };
-  
+
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+    if (deleteTarget.type === 'experience') await deleteExperience(deleteTarget.id);
+    else if (deleteTarget.type === 'education') await deleteEducation(deleteTarget.id);
+    else if (deleteTarget.type === 'skill') await deleteSkill(deleteTarget.id);
+    setDeleteTarget(null);
+  };
+
+  const formatPeriod = (start: string, end: string | null) => {
+    return end ? `${start} - ${end}` : `${start} - present`;
+  };
+
   return (
-    <section id="experience" className="py-20 bg-white/5">
+    <section id="experience" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="space-y-12">
 
+          {/* Experience */}
           <div>
-            <h2 className="text-3xl font-bold mb-8">Experience</h2>
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="text-3xl font-bold font-heading">Experience</h2>
+              {isAdmin && (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => { setEditingExp(undefined); setExpFormOpen(true); }}
+                  className="h-8 w-8 border-primary/30 text-primary hover:bg-primary/10"
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
             <div className="space-y-6">
-              {experiences.map((exp) => (
-                <Card key={exp.title} className="p-6 bg-black/50 border-white/10">
-                  <div className="flex justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-semibold">{exp.title}</h3>
-                      <p className="text-gray-400">{exp.company} • {exp.location}</p>
+              {experiences.map((exp, i) => (
+                <motion.div
+                  key={exp.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.4 }}
+                >
+                  <Card className="p-6 bg-card border-border border-l-2 border-l-primary hover:border-primary/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 relative group">
+                    <AdminControls
+                      onEdit={() => { setEditingExp(exp); setExpFormOpen(true); }}
+                      onDelete={() => setDeleteTarget({ type: 'experience', id: exp.id, name: exp.title })}
+                    />
+                    <div className="flex justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
+                        <p className="text-muted-foreground">{exp.company} • {exp.location}</p>
+                      </div>
+                      <span className="text-muted-foreground text-sm whitespace-nowrap ml-4">
+                        {formatPeriod(exp.periodStart, exp.periodEnd)}
+                      </span>
                     </div>
-                    <span className="text-gray-400">{exp.period}</span>
-                  </div>
-                  <p className="text-gray-300">{exp.description}</p>
-                  <ul className="mt-4 space-y-2">
-                    {exp.achievements.map((achievement, index) => (
-                      <li key={index} className="text-gray-300">• {achievement}</li>
-                    ))}
-                  </ul>
-                </Card>
+                    <p className="text-muted-foreground">{exp.description}</p>
+                    <ul className="mt-4 space-y-2">
+                      {exp.achievements.map((achievement, index) => (
+                        <li key={index} className="text-muted-foreground flex items-start gap-2">
+                          <span className="text-primary mt-1">•</span>
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </div>
 
+          {/* Education */}
           <div>
-            <h2 className="text-3xl font-bold mb-8">Education</h2>
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="text-3xl font-bold font-heading">Education</h2>
+              {isAdmin && (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => { setEditingEdu(undefined); setEduFormOpen(true); }}
+                  className="h-8 w-8 border-accent/30 text-accent hover:bg-accent/10"
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
             <div className="space-y-6">
-              {education.map((edu) => (
-                <Card key={edu.degree} className="p-6 bg-black/50 border-white/10">
-                  <div className="flex justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-semibold">{edu.degree}</h3>
-                      <p className="text-gray-400">{edu.institution} • {edu.location}</p>
+              {education.map((edu, i) => (
+                <motion.div
+                  key={edu.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.4 }}
+                >
+                  <Card className="p-6 bg-card border-border border-l-2 border-l-accent hover:border-accent/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 relative group">
+                    <AdminControls
+                      onEdit={() => { setEditingEdu(edu); setEduFormOpen(true); }}
+                      onDelete={() => setDeleteTarget({ type: 'education', id: edu.id, name: edu.degree })}
+                    />
+                    <div className="flex justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground">{edu.degree}</h3>
+                        <p className="text-muted-foreground">{edu.institution} • {edu.location}</p>
+                      </div>
+                      <span className="text-muted-foreground text-sm whitespace-nowrap ml-4">
+                        {formatPeriod(edu.periodStart, edu.periodEnd)}
+                      </span>
                     </div>
-                    <span className="text-gray-400">{edu.period}</span>
-                  </div>
-                  <p className="text-gray-300">{edu.description}</p>
-                  <ul className="mt-4 space-y-2">
-                    {edu.achievements.map((achievement, index) => (
-                      <li key={index} className="text-gray-300">• {achievement}</li>
-                    ))}
-                  </ul>
-                </Card>
+                    <p className="text-muted-foreground">{edu.description}</p>
+                    <ul className="mt-4 space-y-2">
+                      {edu.achievements.map((achievement, index) => (
+                        <li key={index} className="text-muted-foreground flex items-start gap-2">
+                          <span className="text-accent mt-1">•</span>
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </div>
 
+          {/* Skills */}
           <div>
             <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold">Skills</h2>
+              <div className="flex items-center gap-4">
+                <h2 className="text-3xl font-bold font-heading">Skills</h2>
+                {isAdmin && (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => { setEditingSkill(undefined); setDefaultSkillCategory(undefined); setSkillFormOpen(true); }}
+                    className="h-8 w-8 border-primary/30 text-primary hover:bg-primary/10"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="icon" onClick={() => scroll('left')}>
+                <Button variant="outline" size="icon" onClick={() => scroll('left')} className="border-border hover:border-primary/50 hover:text-primary">
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="icon" onClick={() => scroll('right')}>
+                <Button variant="outline" size="icon" onClick={() => scroll('right')} className="border-border hover:border-primary/50 hover:text-primary">
                   <ChevronRight className="h-4 w-4" />
                 </Button>
               </div>
             </div>
-            <div 
+            <div
               ref={scrollContainerRef}
               className="overflow-x-auto hide-scrollbar"
             >
               <div className="flex gap-6 pb-4" style={{ minWidth: 'min-content' }}>
-                {skills.map((skillGroup) => (
-                  <Card key={skillGroup.category} className="p-6 bg-black/50 border-white/10" style={{ minWidth: '300px' }}>
-                    <h3 className="text-xl font-semibold mb-4">{skillGroup.category}</h3>
-                    <div className="flex flex-wrap gap-2">
+                {skillGroups.map((skillGroup, catIdx) => (
+                  <Card key={skillGroup.category} className="p-6 bg-card border-border hover:border-primary/20 transition-colors" style={{ minWidth: '320px' }}>
+                    <div className="flex items-center justify-between mb-5">
+                      <h3 className="text-lg font-semibold text-primary font-heading">{skillGroup.category}</h3>
+                      {isAdmin && (
+                        <div className="flex items-center gap-1">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => void moveSkillCategory(catIdx, 'left')}
+                            disabled={catIdx === 0}
+                            className="h-6 w-6 text-muted-foreground hover:text-primary hover:bg-primary/10 disabled:opacity-30"
+                          >
+                            <ChevronLeft className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => void moveSkillCategory(catIdx, 'right')}
+                            disabled={catIdx === skillGroups.length - 1}
+                            className="h-6 w-6 text-muted-foreground hover:text-primary hover:bg-primary/10 disabled:opacity-30"
+                          >
+                            <ChevronRight className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => {
+                              setEditingSkill(undefined);
+                              setDefaultSkillCategory(skillGroup.category);
+                              setSkillFormOpen(true);
+                            }}
+                            className="h-6 w-6 text-primary hover:bg-primary/10"
+                          >
+                            <Plus className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                    <div className="space-y-4">
                       {skillGroup.items.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-3 py-1 bg-white/10 rounded-full text-gray-300 hover:bg-white/20 transition-colors"
-                        >
-                          {skill}
-                        </span>
+                        <div key={skill.id} className="relative group">
+                          {isAdmin && (
+                            <AdminControls
+                              onEdit={() => {
+                                const fullSkill = skills.find(s => s.id === skill.id);
+                                setEditingSkill(fullSkill);
+                                setDefaultSkillCategory(undefined);
+                                setSkillFormOpen(true);
+                              }}
+                              onDelete={() => setDeleteTarget({ type: 'skill', id: skill.id, name: skill.name })}
+                            />
+                          )}
+                          <SkillBar name={skill.name} proficiency={skill.proficiency} />
+                        </div>
                       ))}
                     </div>
                   </Card>
@@ -174,6 +304,17 @@ export function ExperienceSection() {
 
         </div>
       </div>
+
+      {/* Admin Dialogs — key forces remount with fresh state when switching items */}
+      <ExperienceForm key={editingExp?.id ?? 'new-exp'} open={expFormOpen} onOpenChange={setExpFormOpen} experience={editingExp} />
+      <EducationForm key={editingEdu?.id ?? 'new-edu'} open={eduFormOpen} onOpenChange={setEduFormOpen} education={editingEdu} />
+      <SkillForm key={editingSkill?.id ?? `new-skill-${defaultSkillCategory ?? ''}`} open={skillFormOpen} onOpenChange={setSkillFormOpen} skill={editingSkill} defaultCategory={defaultSkillCategory} />
+      <DeleteConfirmDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => { if (!open) setDeleteTarget(null); }}
+        itemName={deleteTarget?.name ?? ''}
+        onConfirm={handleDelete}
+      />
     </section>
   );
 }
